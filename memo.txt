@@ -1,0 +1,19 @@
+yarn global add express
+yarn global remove express
+yarn global add live-server
+live-server -v
+npm install -g live-server
+live-server -v
+live-server public
+
+yarn global add babel-cli@6.24.1
+or
+yarn global remove babel-cli
+npm install -g babel-cli@6.24.1
+babel --help
+yarn add babel-preset-react@6.24.1
+yarn add babel-preset-env@1.5.2
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+	
+
