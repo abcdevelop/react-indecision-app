@@ -7,13 +7,25 @@ live-server -v
 live-server public
 
 yarn global add babel-cli@6.24.1
-or
 yarn global remove babel-cli
+or
 npm install -g babel-cli@6.24.1
 babel --help
 yarn add babel-preset-react@6.24.1
 yarn add babel-preset-env@1.5.2
 babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
-	
+npm i -g npm
+    Update available 5.3.0 → 5.5.1
 
+yarn --version
+    yarn install v0.27.5
+
+yarn self-update
+or
+npm upgrade --global yarn
+or
+npm install --global yarn
+    +yarn@1.2.1
+
+yarn --version
