@@ -14,6 +14,8 @@ babel --help
 yarn add babel-preset-react@6.24.1
 yarn add babel-preset-env@1.5.2
 babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+babel src/playground/counter-example.js --out-file=public/scripts/app.js --presets=env,react --watch
+babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 npm i -g npm
     Update available 5.3.0 → 5.5.1
@@ -29,3 +31,29 @@ npm install --global yarn
     +yarn@1.2.1
 
 yarn --version
+
+
+yarn global remove babel-cli live-server
+
+cls
+
+yarn add live-server babel-cli@6.24.1
+
+yarn add webpack@3.1.0
+
+yarn run build
+
+yarn add validator@8.0.0
+
+yarn add react@15.6.1 react-dom@15.6.1
+yarn remove react-dom
+yarn remove react
+yarn add react@16.0.0 react-dom@16.0.0
+
+yarn run build
+
+yarn add babel-core@6.25.0 babel-loader@7.1.1
+    ->configure webpack.config.js + .babelrc
+
+yarn run build
+
