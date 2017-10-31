@@ -61,4 +61,6 @@ yarn add webpack-dev-server@2.5.1
 
 yarn run dev-server
 
+yarn add babel-plugin-transform-class-properties@6.24.1
 
+yarn run dev-server
