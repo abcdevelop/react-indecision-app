@@ -4,11 +4,19 @@ import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import AddOption from './AddOption';
+import OptionModal from './OptionModal';
+
 
 class IndecisionApp extends React.Component {
     state = {
-        options: []//['Thing One', 'Thing Two', 'Thing three']
+        options: [],
+        //['Thing One', 'Thing Two', 'Thing three']
         //options: props.options
+        selectedOption: undefined
+    };
+
+    handleClearSelectedOption = () => {
+        this.setState(() => ({selectedOption: undefined}));
     };
 
     handleDeleteOptions = () => {
@@ -27,7 +35,11 @@ class IndecisionApp extends React.Component {
 
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
-        alert(this.state.options[randomNum]);
+        const option = this.state.options[randomNum];
+        //alert(option);
+        this.setState(() => ({
+            selectedOption: option
+        }));
     };
 
     handleAddOption = (option) => {
@@ -43,7 +55,7 @@ class IndecisionApp extends React.Component {
         }));
     };
 
-    componentDidMount () {
+    componentDidMount() {
         try {
             //console.log('fetching data');
             const json = localStorage.getItem('options');
@@ -57,7 +69,7 @@ class IndecisionApp extends React.Component {
         }
     }
 
-    componentDidUpdate (prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevState.options.length !== this.state.options.length) {
             //console.log('saving data');
             const json = JSON.stringify(this.state.options)
@@ -65,11 +77,11 @@ class IndecisionApp extends React.Component {
         }
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         console.log('componentWillUnmount');
     }
 
-    render (){
+    render() {
         const title = 'Indecision';
         const subtitle = 'Put your life in the hands of a computer';
 
@@ -89,6 +101,10 @@ class IndecisionApp extends React.Component {
                 />
                 <AddOption
                     handleAddOption={this.handleAddOption}
+                />
+                <OptionModal
+                    selectedOption={this.state.selectedOption}
+                    handleClearSelectedOption={this.handleClearSelectedOption}
                 />
             </div>
         );
