@@ -107,3 +107,225 @@ yarn add sass-loader@6.0.6 node-sass@4.5.3
 yarn run dev-server
 
 yarn add normalize.css@7.0.0
+
+
+yarn run build
+yarn run v0.27.5
+$ webpack
+Hash: dec9b724f87fc005911d
+Version: webpack 3.1.0
+Time: 15676ms
+    Asset     Size  Chunks                    Chunk Names
+bundle.js  2.35 MB       0  [emitted]  [big]  main
+  [23] ./src/app.js 705 bytes {0} [built]
+  [55] ./src/styles/styles.scss 1.15 kB {0} [built]
+  [56] ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./src/styles/styles.scss 3.19
+    + 54 hidden modules
+Done in 22.48s.
+
+
+package.json
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
+
+yarn run build:prod
+yarn run v0.27.5
+$ webpack -p
+Hash: 87086918510d5bf97d99
+Version: webpack 3.1.0
+Time: 15208ms
+    Asset    Size  Chunks                    Chunk Names
+bundle.js  513 kB       0  [emitted]  [big]  main
+  [13] ./src/app.js 705 bytes {0} [built]
+  [43] ./src/styles/styles.scss 1.15 kB {0} [built]
+  [44] ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./src/styles/styles.scss 2.42 kB {0} [built]
+    + 42 hidden modules
+Done in 17.33s.
+
+webpack.config.js
+        devtool: isProduction? 'source-map' : 'cheap-module-eval-source-map',
+
+
+yarn run build:prod
+yarn run v0.27.5
+$ webpack -p --env production
+Hash: 2c02fc627fe57e6c26d5
+Version: webpack 3.1.0
+Time: 10127ms
+        Asset    Size  Chunks             Chunk Names
+    bundle.js  149 kB       0  [emitted]  main
+bundle.js.map  605 kB       0  [emitted]  main
+  [13] ./src/app.js 705 bytes {0} [built]
+  [43] ./src/styles/styles.scss 1.15 kB {0} [built]
+  [44] ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./src/styles/styles.scss 2.42 kB {0} [built]
+    + 42 hidden modules
+Done in 11.87s.
+
+
+yarn add extract-text-webpack-plugin@3.0.0
+
+webpack.config.js
+    const CSSExtract = new ExtractTextPlugin('styles.css');
+
+use: CSSExtract.extract({
+                    use: [
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                })
+            }]
+        },
+        plugins:[
+            CSSExtract
+        ],
+
+yarn run build:prod
+yarn run v0.27.5
+$ webpack -p --env production
+Hash: 44fc9b052f131c172bc8
+Version: webpack 3.1.0
+Time: 8015ms
+         Asset      Size  Chunks             Chunk Names
+     bundle.js    139 kB       0  [emitted]  main
+    styles.css   4.55 kB       0  [emitted]  main
+ bundle.js.map    551 kB       0  [emitted]  main
+styles.css.map  87 bytes       0  [emitted]  main
+  [11] ./src/app.js 705 bytes {0} [built]
+  [39] ./src/styles/styles.scss 41 bytes {0} [built]
+    + 39 hidden modules
+Child extract-text-webpack-plugin C:\dev\projects\react-projects\react-indecision-app\node_modules\extract-text-webpack-plugi
+n\dist C:\dev\projects\react-projects\react-indecision-app\node_modules\css-loader\index.js!C:\dev\projects\react-projects\re
+act-indecision-app\node_modules\sass-loader\lib\loader.js!C:\dev\projects\react-projects\react-indecision-app\node_modules\no
+rmalize.css\normalize.css:
+       2 modules
+Child extract-text-webpack-plugin C:\dev\projects\react-projects\react-indecision-app\node_modules\extract-text-webpack-plugi
+n\dist C:\dev\projects\react-projects\react-indecision-app\node_modules\css-loader\index.js!C:\dev\projects\react-projects\re
+act-indecision-app\node_modules\sass-loader\lib\loader.js!C:\dev\projects\react-projects\react-indecision-app\src\styles\styl
+es.scss:
+       [0] ./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./src/styles/styles.scss 2.42 kB {0} [built]
+        + 1 hidden module
+Done in 9.54s.
+
+
+
+index.htlm
+    <link rel="stylesheet" text="text/css" href="/styles.css">
+
+
+
+yarn run serve
+
+
+
+webpack.config.js
+        devtool: isProduction ? 'source-map' : 'inline-source-map',
+
+
+                use: CSSExtract.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
+                })
+
+yarn run dev-server
+
+.gitignore
+node_modules/
+.idea
+.log
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
+
+
+
+git status
+git add .
+git commit -m "Setup production webpack build"
+git push
+
+
+yarn add express@4.15.4
+
+create server/server.js
+
+yarn run build:prod
+yarn run v0.27.5
+$ webpack -p --env production
+Hash: 1987b1247723e35362d0
+Version: webpack 3.1.0
+Time: 9256ms
+         Asset     Size  Chunks             Chunk Names
+     bundle.js   139 kB       0  [emitted]  main
+    styles.css  4.55 kB       0  [emitted]  main
+ bundle.js.map   551 kB       0  [emitted]  main
+styles.css.map  15.5 kB       0  [emitted]  main
+  [11] ./src/app.js 705 bytes {0} [built]
+  [39] ./src/styles/styles.scss 41 bytes {0} [built]
+    + 39 hidden modules
+Child extract-text-webpack-plugin C:\dev\projects\react-projects\react-indecision-app\node_modules\extract-text-webpack-plugi
+n\dist C:\dev\projects\react-projects\react-indecision-app\node_modules\css-loader\index.js??ref--1-1!C:\dev\projects\react-p
+rojects\react-indecision-app\node_modules\sass-loader\lib\loader.js??ref--1-2!C:\dev\projects\react-projects\react-indecision
+-app\node_modules\normalize.css\normalize.css:
+       2 modules
+Child extract-text-webpack-plugin C:\dev\projects\react-projects\react-indecision-app\node_modules\extract-text-webpack-plugi
+n\dist C:\dev\projects\react-projects\react-indecision-app\node_modules\css-loader\index.js??ref--1-1!C:\dev\projects\react-p
+rojects\react-indecision-app\node_modules\sass-loader\lib\loader.js??ref--1-2!C:\dev\projects\react-projects\react-indecision
+-app\src\styles\styles.scss:
+       [0] ./node_modules/css-loader?{"sourceMap":true}!./node_modules/sass-loader/lib/loader.js?{"sourceMap":true}!./src/sty
+les/styles.scss 8.36 kB {0} [built]
+        + 1 hidden module
+Done in 10.97s.
+
+node server/server.js
+
+
+install from https://devcenter.heroku.com/articles/heroku-cli
+heroku-cli-x64.exe
+restart machine
+
+heroku --version
+heroku-cli/6.14.36-15f8a25 (windows-x64) node-v8.7.0
+
+heroku login
+email/password
+Logged in as bruno.panaget@yahoo.fr
+
+heroku create react-indecision-app
+Creating react-indecision-app... done
+https://react-indecision-app.herokuapp.com/ | https://git.heroku.com/react-indecision-app.git
+
+git remote
+heroku
+origin
+
+git remote -v
+heroku  https://git.heroku.com/react-indecision-app.git (fetch)
+heroku  https://git.heroku.com/react-indecision-app.git (push)
+origin  https://github.com/abcdevelop/react-indecision-app.git (fetch)
+origin  https://github.com/abcdevelop/react-indecision-app.git (push)
+
+package.json
+    "start":"node server/server.js",
+    "heroku-postbuild":"yarn run build:prod"
+
+git add .
+git commit -m "Prepare to heroku"
+git push
+git push heroku master
+
+heroku logs
+
+
